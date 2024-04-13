@@ -1,4 +1,4 @@
-echo 1. what is in the direcdtopry?
+          echo 1. what is in the direcdtopry?
           ls -a
           echo
           echo 2. Is Java installed?
