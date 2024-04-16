@@ -6,7 +6,7 @@ on:
     - release
 
 jobs:
-  archive build artifacts:
+  archive-build-artifacts:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1 - create a temporary artifact download folder
