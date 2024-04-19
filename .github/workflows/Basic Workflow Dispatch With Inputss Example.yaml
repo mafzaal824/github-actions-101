@@ -1,4 +1,4 @@
-name: Workflow Dispatch With Inputs Example
+name: Workflow Dispatch With Choice Inputs Example
 
 on:
   workflow_dispatch:
@@ -7,12 +7,6 @@ on:
             description: 'The environment to deploy to'
             required: true
             default: 'production'
-            type: choice
-            options:
-              - Prod
-              - QA
-              - Dev
-
 
 jobs:
   deploy:
