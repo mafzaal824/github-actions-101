@@ -1,4 +1,4 @@
-name: Workflow Dispatch With Inputs Example
+name: Workflow Dispatch With Choice Inputs Example
 
 on:
   workflow_dispatch:
