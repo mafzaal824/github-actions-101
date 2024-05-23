@@ -1,10 +1,17 @@
 ##################################################################################
+# DATA
+##################################################################################
+
+data "azurerm_resource_group" "rg" {
+  name = "afzaal-temp"
+}
+
+##################################################################################
 # LOCALS
 ##################################################################################
 
 
 locals {
-  resource_group_name = "${var.naming_prefix}-${random_integer.name_suffix.result}"
   app_service_plan_name = "${var.naming_prefix}-${random_integer.name_suffix.result}"
   app_service_name = "${var.naming_prefix}-${random_integer.name_suffix.result}"
 }
@@ -18,15 +25,10 @@ resource "random_integer" "name_suffix" {
 # APP SERVICE
 ##################################################################################
 
-resource "azurerm_resource_group" "app_service" {
-  name     = local.resource_group_name
-  location = var.location
-}
-
 resource "azurerm_app_service_plan" "app_service" {
   name                = local.app_service_plan_name
-  location            = azurerm_resource_group.app_service.location
-  resource_group_name = azurerm_resource_group.app_service.name
+  location            = var.location
+  resource_group_name = data.azurerm_resource_group.rg.name
 
   sku {
     tier = var.asp_tier
@@ -37,8 +39,8 @@ resource "azurerm_app_service_plan" "app_service" {
 
 resource "azurerm_app_service" "app_service" {
   name                = local.app_service_name
-  location            = azurerm_resource_group.app_service.location
-  resource_group_name = azurerm_resource_group.app_service.name
+  location            = var.location
+  resource_group_name = data.azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.app_service.id
   
   source_control {
