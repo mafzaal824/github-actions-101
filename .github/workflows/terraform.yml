@@ -1,7 +1,6 @@
 name: 'Terraform'
 
-on:  workflow_dispatch:
-# on: [push, pull_request]
+on: [push, pull_request]
 
 env:
   TF_LOG: INFO
